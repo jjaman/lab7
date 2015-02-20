@@ -36,8 +36,9 @@ function initializePage() {
 
 			// compose the HTML
 			var new_html =
-				'<div class="project-date">'+display_date+'</div>'+
-				'<div class="project-summary">'+project_json['summary']+'</div>'+
+				'<div class="project-date"><b>Date: </b>'+display_date+'</div>'+
+				'<div class="project-summary"><b>Summary: </b>'+project_json['summary']+'</div>'+
+				'<div class="project-comments"><b>Comments: </b>'+project_json['comments']+'</div>'+
 				'<button class="project-delete btn btn-default" '+
 					'type="button">delete</button>';
 
@@ -63,11 +64,13 @@ function initializePage() {
 		var image_url = $('#new-project-form #image_url').val();
 		var date = $('#new-project-form #date').val();
 		var summary = $('#new-project-form #summary').val();
+		var comments = $('#new-project-form #comments').val();
 		var json = {
-			'project_title': title,
-			'image_url': image_url,
+			'title': title,
+			'image': image_url,
 			'date':  date,
-			'summary': summary
+			'summary': summary,
+			'comments': comments
 		};
 		$.post('/project/new', json, function() {
 			window.location.href = '/'; // reload the page
